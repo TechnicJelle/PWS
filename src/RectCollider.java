@@ -6,8 +6,8 @@ import static processing.core.PConstants.CORNERS;
 public class RectCollider {
     private final PApplet sketch;
 
-    private final PVector pos1;
-    private final PVector pos2;
+    public final PVector pos1;
+    public final PVector pos2;
 
     public RectCollider(PApplet sketch, float x1, float y1, float x2, float y2) {
         this.sketch = sketch;
@@ -18,7 +18,6 @@ public class RectCollider {
     public void update() {}
 
     public void render() {
-        sketch.fill(255);
         sketch.noStroke();
         sketch.rectMode(CORNERS);
         sketch.rect(pos1.x, pos1.y, pos2.x, pos2.y);
