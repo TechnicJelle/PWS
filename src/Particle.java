@@ -19,7 +19,7 @@ public class Particle {
         acc.add(f);
     }
 
-    public void update () {
+    public void update() {
         vel.add(acc);
         pos.add(vel);
         acc.mult(0);
