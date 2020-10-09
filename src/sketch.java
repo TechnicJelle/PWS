@@ -34,7 +34,7 @@ public class sketch extends PApplet {
         mouse.pos2.y = mouseY+20f;
         mouse.render();
 
-        //rcball&rc
+        //rcball & rc
         fill(TestRectOverlap(particle.rcball, rc) ? 255 : 100);
 
         particle.update();

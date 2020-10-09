@@ -1,8 +1,6 @@
 import processing.core.PApplet;
 import processing.core.PVector;
 
-import java.time.format.TextStyle;
-
 public class Particle {
     private final PApplet sketch;
 
@@ -21,7 +19,7 @@ public class Particle {
         vel = new PVector(0, 0);
         acc = new PVector(0, 0);
         dm = 16;
-        r=dm/2;
+        r = dm/2;
         rcball = new RectCollider(sketch, x-r, y-r, x+r,y+r);
     }
 
