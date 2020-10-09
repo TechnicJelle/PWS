@@ -1,26 +1,23 @@
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class sketch extends PApplet {
 
-    Particle[] particles = new Particle[10];
+    Particle particle;
 
     public void settings() {
-        size(512,512);
-        //fullScreen();
+        size(800,600);
     }
 
     public void setup() {
-        background(0);
-        for (int i = 0; i < particles.length; i++) {
-            particles[i] = new Particle(this, random(width), random(height));
-        }
+        particle = new Particle(this, width/3f, height/2f);
+        particle.applyForce(new PVector(8,0));
     }
 
     public void draw() {
-        for (Particle p : particles) {
-            p.update();
-            p.render();
-        }
+        background(0);
+        particle.update();
+        particle.render();
     }
 
     public static void main(String[] args) {
