@@ -13,10 +13,12 @@ public class sketch extends PApplet {
     }
 
     public void setup() {
-        particle = new Particle(this, width/3f, height/2f);
-        particle.applyForce(new PVector(8,0));
+        frameRate(5);
 
-        rc = new RectCollider(this, width*2f/3f, height/3f, width*2f/3f+32, height*2f/3f);
+        particle = new Particle(this, width/3f, height/2f);
+        particle.applyForce(new PVector(100000000,0));
+
+        rc = new RectCollider(this, width*2f/3f+30, height/3f, width*2f/3f+32, height*2f/3f);
 
         mouse = new RectCollider(this, mouseX, mouseY, mouseX+20f, mouseY+20f);
     }
@@ -31,6 +33,9 @@ public class sketch extends PApplet {
         mouse.pos2.x = mouseX+20f;
         mouse.pos2.y = mouseY+20f;
         mouse.render();
+
+        //rcball&rc
+        fill(TestRectOverlap(particle.rcball, rc) ? 255 : 100);
 
         particle.update();
         particle.render();

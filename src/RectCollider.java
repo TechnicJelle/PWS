@@ -15,7 +15,11 @@ public class RectCollider {
         pos2 = new PVector(x2, y2);
     }
 
-    public void update() {}
+    public void move(PVector shove) {
+        pos1.add(shove);
+        pos2.add(shove);
+    }
+
 
     public void render() {
         sketch.noStroke();
