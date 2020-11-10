@@ -10,13 +10,15 @@ public class RectCollider {
     PVector pos2;
 
     boolean hit = false;
-    int hitColor = 255;
-    int noHitColor = 100;
+    int hitColor;
+    int noHitColor;
 
     RectCollider(PApplet sketch, float x1, float y1, float x2, float y2) {
         this.sketch = sketch;
         pos1 = new PVector(x1, y1);
         pos2 = new PVector(x2, y2);
+        hitColor = sketch.color(255);
+        noHitColor = sketch.color(139, 85, 36);
     }
 
     void move(PVector shove) {

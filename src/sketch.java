@@ -25,18 +25,18 @@ public class sketch extends PApplet {
     }
 
     public void draw() {
-        background(0);
+        background(66, 141, 66);
 
         // ==== PHYSICS ====
 
         // == Hits ==
-        // Hit resets
+        // Hit resets for this frame (iteration)
         particle.rcBall.hit = false;
         for(RectCollider sc : staticColliders) {
             sc.hit = false;
         }
 
-        // Hit checking
+        // Hit checking and wall bounces
         for (int i = 0; i < staticColliders.length; i++) {
             if(TestRectOverlap(staticColliders[i], particle.rcBall)) {
                 if (i == 0 || i == 2) particle.vel.y *= -1f;
