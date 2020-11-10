@@ -35,7 +35,7 @@ public class Particle {
     }
     public void render() {
 
-        //sketch.fill(255,0,0);
+        sketch.fill(rcBall.hit ? rcBall.hitColor : rcBall.noHitColor);
         sketch.noStroke();
         sketch.circle(pos.x, pos.y, dm);
     }

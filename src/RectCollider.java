@@ -9,6 +9,10 @@ public class RectCollider {
     public final PVector pos1;
     public final PVector pos2;
 
+    public boolean hit = false;
+    public int hitColor = 255;
+    public int noHitColor = 100;
+
     public RectCollider(PApplet sketch, float x1, float y1, float x2, float y2) {
         this.sketch = sketch;
         pos1 = new PVector(x1, y1);
@@ -20,10 +24,10 @@ public class RectCollider {
         pos2.add(shove);
     }
 
-
     public void render() {
         sketch.noStroke();
         sketch.rectMode(CORNERS);
+        sketch.fill(hit ? hitColor : noHitColor);
         sketch.rect(pos1.x, pos1.y, pos2.x, pos2.y);
     }
 }

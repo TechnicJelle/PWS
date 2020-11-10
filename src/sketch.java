@@ -16,9 +16,9 @@ public class sketch extends PApplet {
         frameRate(5);
 
         particle = new Particle(this, width/3f, height/2f);
-        particle.applyForce(new PVector(5,0));
+        particle.applyForce(new PVector(30,0));
 
-        rc = new RectCollider(this, width*2f/3f+30, height/3f, width*2f/3f+32, height*2f/3f);
+        rc = new RectCollider(this, width*2f/3f+30f, height/3f, width*2f/3f+32f, height*2f/3f);
 
         mouse = new RectCollider(this, mouseX, mouseY, mouseX+20f, mouseY+20f);
     }
@@ -27,6 +27,8 @@ public class sketch extends PApplet {
         background(0);
 
         // ==== PHYSICS ====
+
+        // == Movement ==
         mouse.pos1.x = mouseX;
         mouse.pos1.y = mouseY;
         mouse.pos2.x = mouseX+20f;
@@ -34,14 +36,26 @@ public class sketch extends PApplet {
 
         particle.update();
 
-        // ==== RENDERING ====
-        fill(TestRectOverlap(rc, mouse) ? 255 : 100);
-        mouse.render();
-        fill(TestRectOverlap(particle.rcBall, rc) ? 255 : 100);
-        particle.render();
-        rc.render();
+        // == Hits ==
+        // Hit resets
+        rc.hit = false;
+        particle.rcBall.hit = false;
+        mouse.hit = false;
+        // Hit checking
+        TestRectOverlap(rc, mouse);
+        TestRectOverlap(particle.rcBall, rc);
+        TestRectOverlap(particle.rcBall, mouse);
 
-        saveFrame("/frames/take0002/frame-####.png");
+
+        // ==== RENDERING ====
+        //fill(TestRectOverlap(rc, mouse) ? 255 : 100);
+        //fill(TestRectOverlap(particle.rcBall, rc) ? 255 : 100);
+
+        mouse.render();
+        rc.render();
+        particle.render();
+
+        //saveFrame("/frames/take0004/frame-####.png");
     }
 
     boolean TestRectOverlap(RectCollider a, RectCollider b) {
@@ -57,6 +71,8 @@ public class sketch extends PApplet {
         if(d2x > 0f || d2y > 0f)
             return false;
 
+        a.hit = true;
+        b.hit = true;
         return true;
     }
 
