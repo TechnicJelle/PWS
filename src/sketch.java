@@ -5,22 +5,23 @@ public class sketch extends PApplet {
 
     Particle particle;
 
-    RectCollider rc;
-    RectCollider mouse;
+    RectCollider[] staticColliders = new RectCollider[4];
 
     public void settings() {
         size(800,600);
     }
 
     public void setup() {
-        frameRate(5);
+        frameRate(60);
 
         particle = new Particle(this, width/3f, height/2f);
-        particle.applyForce(new PVector(30,0));
+        particle.applyForce(new PVector(2,1));
 
-        rc = new RectCollider(this, width*2f/3f+30f, height/3f, width*2f/3f+32f, height*2f/3f);
-
-        mouse = new RectCollider(this, mouseX, mouseY, mouseX+20f, mouseY+20f);
+        float wallThickness = 16;
+        staticColliders[0] = new RectCollider(this, 0, 0, width, wallThickness);
+        staticColliders[1] = new RectCollider(this, width-wallThickness, 0, width, height);
+        staticColliders[2] = new RectCollider(this, 0, height-wallThickness, width, height);
+        staticColliders[3] = new RectCollider(this, 0, 0, wallThickness, height);
     }
 
     public void draw() {
@@ -28,31 +29,28 @@ public class sketch extends PApplet {
 
         // ==== PHYSICS ====
 
-        // == Movement ==
-        mouse.pos1.x = mouseX;
-        mouse.pos1.y = mouseY;
-        mouse.pos2.x = mouseX+20f;
-        mouse.pos2.y = mouseY+20f;
+        // == Hits ==
+        // Hit resets
+        particle.rcBall.hit = false;
+        for(RectCollider sc : staticColliders) {
+            sc.hit = false;
+        }
+
+        // Hit checking
+        for (int i = 0; i < staticColliders.length; i++) {
+            if(TestRectOverlap(staticColliders[i], particle.rcBall)) {
+                if (i == 0 || i == 2) particle.vel.y *= -1f;
+                if (i == 1 || i == 3) particle.vel.x *= -1f;
+            }
+        }
 
         particle.update();
 
-        // == Hits ==
-        // Hit resets
-        rc.hit = false;
-        particle.rcBall.hit = false;
-        mouse.hit = false;
-        // Hit checking
-        TestRectOverlap(rc, mouse);
-        TestRectOverlap(particle.rcBall, rc);
-        TestRectOverlap(particle.rcBall, mouse);
-
 
         // ==== RENDERING ====
-        //fill(TestRectOverlap(rc, mouse) ? 255 : 100);
-        //fill(TestRectOverlap(particle.rcBall, rc) ? 255 : 100);
-
-        mouse.render();
-        rc.render();
+        for (RectCollider sc : staticColliders) {
+            if (sc != null) sc.render();
+        }
         particle.render();
 
         //saveFrame("/frames/take0004/frame-####.png");
