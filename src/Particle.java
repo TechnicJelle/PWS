@@ -8,7 +8,7 @@ public class Particle {
     private final PVector vel;
     private final PVector acc;
 
-    RectCollider rcball;
+    RectCollider rcBall;
 
     float dm;
     float r;
@@ -20,7 +20,7 @@ public class Particle {
         acc = new PVector(0, 0);
         dm = 16;
         r = dm/2;
-        rcball = new RectCollider(sketch, x-r, y-r, x+r,y+r);
+        rcBall = new RectCollider(sketch, x-r, y-r, x+r,y+r);
     }
 
     public void applyForce(PVector f) {
@@ -31,7 +31,7 @@ public class Particle {
         vel.add(acc);
         pos.add(vel);
         acc.mult(0);
-        rcball.move(vel);
+        rcBall.move(vel);
     }
     public void render() {
 

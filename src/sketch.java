@@ -16,7 +16,7 @@ public class sketch extends PApplet {
         frameRate(5);
 
         particle = new Particle(this, width/3f, height/2f);
-        particle.applyForce(new PVector(100000000,0));
+        particle.applyForce(new PVector(5,0));
 
         rc = new RectCollider(this, width*2f/3f+30, height/3f, width*2f/3f+32, height*2f/3f);
 
@@ -25,20 +25,23 @@ public class sketch extends PApplet {
 
     public void draw() {
         background(0);
-        rc.render();
 
-        fill(TestRectOverlap(rc, mouse) ? 255 : 100);
+        // ==== PHYSICS ====
         mouse.pos1.x = mouseX;
         mouse.pos1.y = mouseY;
         mouse.pos2.x = mouseX+20f;
         mouse.pos2.y = mouseY+20f;
-        mouse.render();
-
-        //rcball & rc
-        fill(TestRectOverlap(particle.rcball, rc) ? 255 : 100);
 
         particle.update();
+
+        // ==== RENDERING ====
+        fill(TestRectOverlap(rc, mouse) ? 255 : 100);
+        mouse.render();
+        fill(TestRectOverlap(particle.rcBall, rc) ? 255 : 100);
         particle.render();
+        rc.render();
+
+        saveFrame("/frames/take0002/frame-####.png");
     }
 
     boolean TestRectOverlap(RectCollider a, RectCollider b) {
