@@ -6,25 +6,25 @@ import static processing.core.PConstants.CORNERS;
 public class RectCollider {
     private final PApplet sketch;
 
-    public final PVector pos1;
-    public final PVector pos2;
+    PVector pos1;
+    PVector pos2;
 
-    public boolean hit = false;
-    public int hitColor = 255;
-    public int noHitColor = 100;
+    boolean hit = false;
+    int hitColor = 255;
+    int noHitColor = 100;
 
-    public RectCollider(PApplet sketch, float x1, float y1, float x2, float y2) {
+    RectCollider(PApplet sketch, float x1, float y1, float x2, float y2) {
         this.sketch = sketch;
         pos1 = new PVector(x1, y1);
         pos2 = new PVector(x2, y2);
     }
 
-    public void move(PVector shove) {
+    void move(PVector shove) {
         pos1.add(shove);
         pos2.add(shove);
     }
 
-    public void render() {
+    void render() {
         sketch.noStroke();
         sketch.rectMode(CORNERS);
         sketch.fill(hit ? hitColor : noHitColor);

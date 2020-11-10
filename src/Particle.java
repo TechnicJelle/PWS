@@ -4,16 +4,16 @@ import processing.core.PVector;
 public class Particle {
     private final PApplet sketch;
 
-    private final PVector pos;
-    private final PVector vel;
-    private final PVector acc;
+    PVector pos;
+    PVector vel;
+    PVector acc;
 
     RectCollider rcBall;
 
     float dm;
     float r;
 
-    public Particle(PApplet sketch, float x, float y) {
+    Particle(PApplet sketch, float x, float y) {
         this.sketch = sketch;
         pos = new PVector(x, y);
         vel = new PVector(0, 0);
@@ -23,17 +23,17 @@ public class Particle {
         rcBall = new RectCollider(sketch, x-r, y-r, x+r,y+r);
     }
 
-    public void applyForce(PVector f) {
+    void applyForce(PVector f) {
         acc.add(f);
     }
 
-    public void update() {
+    void update() {
         vel.add(acc);
         pos.add(vel);
         acc.mult(0);
         rcBall.move(vel);
     }
-    public void render() {
+    void render() {
 
         sketch.fill(rcBall.hit ? rcBall.hitColor : rcBall.noHitColor);
         sketch.noStroke();
