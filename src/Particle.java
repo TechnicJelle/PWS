@@ -29,6 +29,10 @@ public class Particle {
 
 	void update() {
 		vel.add(acc);
+		if (vel.mag() < 0.01f) {
+			vel.x = 0;
+			vel.y = 0;
+		}
 		pos.add(vel);
 		acc.mult(0);
 		rcBall.move(vel);
