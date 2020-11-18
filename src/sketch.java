@@ -53,7 +53,7 @@ public class sketch extends PApplet {
                 k * particle.vel.x * abs(particle.vel.x),
                 k * particle.vel.y * abs(particle.vel.y));
 
-        particle.applyForce(Fra.mult(-1).div(frameRate));
+        particle.applyForce(Fra.mult(-1));
         //renderForce(Fra, 10000f);
 
         particle.update();
