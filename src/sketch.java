@@ -5,6 +5,7 @@ public class sketch extends PApplet {
     int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
     int wallThickness = 10 * scaleFac; // wall should be 10 cm thick
 
+    float k = 0.044f; // air resistance coefficient
     Particle particle;
 
     RectCollider[] staticColliders = new RectCollider[4];
@@ -45,6 +46,16 @@ public class sketch extends PApplet {
             }
         }
 
+        // == Resistances ==
+
+        // Force_resistance,air
+        PVector Fra = new PVector(
+                k * particle.vel.x * abs(particle.vel.x),
+                k * particle.vel.y * abs(particle.vel.y));
+
+        particle.applyForce(Fra.mult(-1).div(frameRate));
+        //renderForce(Fra, 10000f);
+
         particle.update();
 
 
@@ -57,6 +68,11 @@ public class sketch extends PApplet {
         //saveFrame("/frames/take0004/frame-####.png");
     }
 
+    void renderForce(PVector f, float scl) {
+        stroke(255);
+        strokeWeight(3);
+        line(particle.pos.x, particle.pos.y,particle.pos.x + scl*f.x, particle.pos.y + scl*f.y);
+    }
     boolean TestRectOverlap(RectCollider a, RectCollider b) {
         //TestAABBOverlap from https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
         float d1x = b.pos1.x - a.pos2.x;
