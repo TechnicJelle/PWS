@@ -58,13 +58,23 @@ public class sketch extends PApplet {
 
 		// == Resistances ==
 
-		// Force_resistance,air
-		PVector Fra = new PVector(
-				k * particle.vel.x * abs(particle.vel.x),
-				k * particle.vel.y * abs(particle.vel.y));
 
-		particle.applyForce(Fra.mult(-1));
-		//renderForce(Fra, 10000f);
+		{// Force_resistance,air
+			PVector Fra = new PVector(
+					k * particle.vel.x * abs(particle.vel.x),
+					k * particle.vel.y * abs(particle.vel.y));
+
+			particle.applyForce(Fra.mult(-1f / scaleFac));
+			//renderForce(Fra, 10000f);
+		}
+
+		{// Force_resistance_roll
+			PVector Frr = particle.vel.copy().setMag(0.34f);
+			//PVector Frr = PVector.fromAngle(particle.vel.heading()).setMag(c);
+
+			particle.applyForce(Frr.mult(-1f / scaleFac));
+			//renderForce(Frr, 10000f);
+		}
 
 		particle.update();
 
