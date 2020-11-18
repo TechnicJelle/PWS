@@ -1,5 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PVector;
+//import processing.data.Table;
+//import processing.data.TableRow;
 
 public class sketch extends PApplet {
     int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
@@ -9,6 +11,8 @@ public class sketch extends PApplet {
     Particle particle;
 
     RectCollider[] staticColliders = new RectCollider[4];
+
+    //Table table;
 
     public void settings() {
         size(254*scaleFac + 2*wallThickness, 138*scaleFac + 2*wallThickness);
@@ -24,6 +28,12 @@ public class sketch extends PApplet {
         staticColliders[1] = new RectCollider(this, width-wallThickness, 0, width, height);
         staticColliders[2] = new RectCollider(this, 0, height-wallThickness, width, height);
         staticColliders[3] = new RectCollider(this, 0, 0, wallThickness, height);
+
+        // == Table Logging Setup ==
+        //table = new Table();
+        //table.addColumn("millis");
+        //table.addColumn("frameCount");
+        //table.addColumn("velMag");
     }
 
     public void draw() {
@@ -65,8 +75,17 @@ public class sketch extends PApplet {
         }
         particle.render();
 
-        //saveFrame("/frames/take0004/frame-####.png");
+        // == Frame Saving ==
+        //saveFrame("/out/frames/take0004/frame-####.png");
+
+        // == Table Logging ==
+        //TableRow newRow = table.addRow();
+        //newRow.setInt("millis", millis());
+        //newRow.setInt("frameCount", frameCount);
+        //newRow.setFloat("velMag", particle.vel.mag());
     }
+
+    //public void mousePressed() { saveTable(table, "out/table_highFPS-unlinked.csv"); }
 
     void renderForce(PVector f, float scl) {
         stroke(255);
