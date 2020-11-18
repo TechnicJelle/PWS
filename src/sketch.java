@@ -5,9 +5,9 @@ import processing.core.PVector;
 
 public class sketch extends PApplet {
 	int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
-	int wallThickness = 10 * scaleFac; // wall should be 10 cm thick
+	float wallThickness = 0.1f; // wall should be 10 cm thick
 
-	float k = 0.044f; // air resistance coefficient
+	float k = 0.036f; // air resistance coefficient
 	Particle particle;
 
 	RectCollider[] staticColliders = new RectCollider[4];
@@ -15,19 +15,19 @@ public class sketch extends PApplet {
 	//Table table;
 
 	public void settings() {
-		size(254*scaleFac + 2*wallThickness, 138*scaleFac + 2*wallThickness);
+		size((int)(254f + 2f*wallThickness)* scaleFac, (int)(138 + 2*wallThickness) * scaleFac);
 	}
 
 	public void setup() {
-		frameRate(99999999);
+		frameRate(30);
 
-		particle = new Particle(this, width/3f, height/2f);
-		particle.applyForce(new PVector(2,1)); // Keep this small! This is kind of the time step (dt). If you want the simulation to run faster, change the frameRate up there
+		particle = new Particle(this, 0.5f, 0.5f, 6 * scaleFac);
+		particle.applyForce(new PVector(0.002f,0.001f)); // Keep this small! This is kind of the time step (dt). If you want the simulation to run faster, change the frameRate up there
 
-		staticColliders[0] = new RectCollider(this, 0, 0, width, wallThickness);
-		staticColliders[1] = new RectCollider(this, width-wallThickness, 0, width, height);
-		staticColliders[2] = new RectCollider(this, 0, height-wallThickness, width, height);
-		staticColliders[3] = new RectCollider(this, 0, 0, wallThickness, height);
+		staticColliders[0] = new RectCollider(this, 0f, 0f, 1f, wallThickness);
+		staticColliders[1] = new RectCollider(this, 1f-wallThickness, 0f, 1f, 1f);
+		staticColliders[2] = new RectCollider(this, 0f, 1f-wallThickness, 1f, 1f);
+		staticColliders[3] = new RectCollider(this, 0f, 0, wallThickness, 1f);
 
 		// == Table Logging Setup ==
 		//table = new Table();

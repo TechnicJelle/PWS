@@ -30,6 +30,7 @@ public class RectCollider {
 		sketch.noStroke();
 		sketch.rectMode(CORNERS);
 		sketch.fill(hit ? hitColor : noHitColor);
-		sketch.rect(pos1.x, pos1.y, pos2.x, pos2.y);
+		sketch.rect(pos1.x * sketch.width, pos1.y * sketch.height,
+					pos2.x * sketch.width, pos2.y * sketch.height);
 	}
 }
