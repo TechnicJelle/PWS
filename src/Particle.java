@@ -13,12 +13,12 @@ public class Particle {
 	float dm;
 	float r;
 
-	Particle(PApplet sketch, float x, float y) {
+	Particle(PApplet sketch, float x, float y, float d) {
 		this.sketch = sketch;
 		pos = new PVector(x, y);
 		vel = new PVector(0, 0);
 		acc = new PVector(0, 0);
-		dm = 16;
+		dm = d;
 		r = dm/2;
 		rcBall = new RectCollider(sketch, x-r, y-r, x+r,y+r);
 	}

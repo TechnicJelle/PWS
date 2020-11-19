@@ -21,7 +21,7 @@ public class sketch extends PApplet {
 	public void setup() {
 		frameRate(99999999);
 
-		particle = new Particle(this, width/3f, height/2f);
+		particle = new Particle(this, width/3f, height/2f, 6 * scaleFac);
 		particle.applyForce(new PVector(2,1)); // Keep this small! This is kind of the time step (dt). If you want the simulation to run faster, change the frameRate up there
 
 		staticColliders[0] = new RectCollider(this, 0, 0, width, wallThickness);
