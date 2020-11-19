@@ -133,6 +133,10 @@ public class sketch extends PApplet {
 		arrow(particle.pos.x, particle.pos.y,particle.pos.x + sclFac*f.x, particle.pos.y + sclFac*f.y, 5);
 	}
 
+	void arrow(PVector a, PVector b, float s) {
+		arrow(a.x, a.y, b.x, b.y, s);
+	}
+
 	void arrow(float x1, float y1, float x2, float y2, float s) {
 		//From: https://processing.org/discourse/beta/num_1219607845.html
 		line(x1, y1, x2, y2);
