@@ -6,6 +6,7 @@ import processing.core.PVector;
 public class sketch extends PApplet {
 	int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
 	int wallThickness = 10 * scaleFac; // wall should be 10 cm thick
+	boolean applyResistances = false;
 
 	float k = 0.044f; // air resistance coefficient
 	Particle particle;
@@ -57,23 +58,23 @@ public class sketch extends PApplet {
 		}
 
 		// == Resistances ==
+		if(applyResistances) {
+			{// Force_resistance,air
+				PVector Fra = new PVector(
+						k * particle.vel.x * abs(particle.vel.x),
+						k * particle.vel.y * abs(particle.vel.y));
 
+				particle.applyForce(Fra.mult(-1f / scaleFac));
+				//renderForce(Fra, 10000f);
+			}
 
-		{// Force_resistance,air
-			PVector Fra = new PVector(
-					k * particle.vel.x * abs(particle.vel.x),
-					k * particle.vel.y * abs(particle.vel.y));
+			{// Force_resistance_roll
+				PVector Frr = particle.vel.copy().setMag(0.34f);
+				//PVector Frr = PVector.fromAngle(particle.vel.heading()).setMag(c);
 
-			particle.applyForce(Fra.mult(-1f / scaleFac));
-			//renderForce(Fra, 10000f);
-		}
-
-		{// Force_resistance_roll
-			PVector Frr = particle.vel.copy().setMag(0.34f);
-			//PVector Frr = PVector.fromAngle(particle.vel.heading()).setMag(c);
-
-			particle.applyForce(Frr.mult(-1f / scaleFac));
-			//renderForce(Frr, 10000f);
+				particle.applyForce(Frr.mult(-1f / scaleFac));
+				//renderForce(Frr, 10000f);
+			}
 		}
 
 		particle.update();
