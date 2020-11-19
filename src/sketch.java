@@ -103,6 +103,19 @@ public class sketch extends PApplet {
 		strokeWeight(3);
 		line(particle.pos.x, particle.pos.y,particle.pos.x + scl*f.x, particle.pos.y + scl*f.y);
 	}
+
+	void arrow(float x1, float y1, float x2, float y2, float s) {
+		//From: https://processing.org/discourse/beta/num_1219607845.html
+		line(x1, y1, x2, y2);
+		pushMatrix();
+		translate(x2, y2);
+		float a = atan2(x1-x2, y2-y1);
+		rotate(a);
+		line(0, 0, -s, -s);
+		line(0, 0, s, -s);
+		popMatrix();
+	}
+
 	boolean TestRectOverlap(RectCollider a, RectCollider b) {
 		//TestAABBOverlap from https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
 		float d1x = b.pos1.x - a.pos2.x;
