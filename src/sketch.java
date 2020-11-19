@@ -82,7 +82,7 @@ public class sketch extends PApplet {
 
 		// ==== RENDERING ====
 		for (RectCollider sc : staticColliders) {
-			if (sc != null) sc.render();
+			sc.render();
 		}
 		particle.render();
 
