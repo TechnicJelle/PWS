@@ -11,7 +11,7 @@ public class sketch extends PApplet {
 
 	// == Constants ==
 	float k = 0.044f; // air resistance coefficient
-	float e = 0.2f;   // COR (coefficient of restitution)
+	float e = 1.0f;   // COR (coefficient of restitution)
 	float c = 0.34f;  // roll resistance magnitude
 
 	Particle particle;
