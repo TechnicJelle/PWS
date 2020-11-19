@@ -26,17 +26,18 @@ public class sketch extends PApplet {
 		particle = new Particle(this, width/3f, height/2f, 6 * scaleFac);
 		particle.applyForce(new PVector(2,1)); // Keep this small! This is kind of the time step (dt). If you want the simulation to run faster, change the frameRate up there
 
+		float r = particle.r;
 		staticColliders[0] = new RectCollider(this, 0, 0, width, wallThickness);
-		staticColliders[0].setHitLines(0, wallThickness, width, wallThickness);
+		staticColliders[0].setHitLines(0, wallThickness+r, width, wallThickness+r);
 
 		staticColliders[1] = new RectCollider(this, width-wallThickness, 0, width, height);
-		staticColliders[1].setHitLines(width-wallThickness, 0, width-wallThickness, height);
+		staticColliders[1].setHitLines(width-wallThickness-r, 0, width-wallThickness-r, height);
 
 		staticColliders[2] = new RectCollider(this, 0, height-wallThickness, width, height);
-		staticColliders[2].setHitLines(width, height-wallThickness, 0, height-wallThickness);
+		staticColliders[2].setHitLines(width, height-wallThickness-r, 0, height-wallThickness-r);
 
 		staticColliders[3] = new RectCollider(this, 0, 0, wallThickness, height);
-		staticColliders[3].setHitLines(wallThickness, height, wallThickness, 0);
+		staticColliders[3].setHitLines(wallThickness+r, height, wallThickness+r, 0);
 
 		// == Table Logging Setup ==
 		//table = new Table();
