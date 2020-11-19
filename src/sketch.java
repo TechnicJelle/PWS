@@ -9,7 +9,11 @@ public class sketch extends PApplet {
 	boolean applyResistances = false ;
 	boolean useOwnMethod = true ;
 
+	// == Constants ==
 	float k = 0.044f; // air resistance coefficient
+	float e = 0.2f;   // COR (coefficient of restitution)
+	float c = 0.34f;  // roll resistance magnitude
+
 	Particle particle;
 
 	RectCollider[] staticColliders = new RectCollider[4];
@@ -87,7 +91,7 @@ public class sketch extends PApplet {
 			}
 
 			{// Force_resistance_roll
-				PVector Frr = particle.vel.copy().setMag(0.34f);
+				PVector Frr = particle.vel.copy().setMag(c);
 
 				particle.applyForce(Frr.mult(-1f / scaleFac));
 				//renderForce(Frr, 10000f);
@@ -133,8 +137,8 @@ public class sketch extends PApplet {
 	//public void mousePressed() { saveTable(table, "out/table_highFPS-unlinked.csv"); }
 
 	private void executeParticleBounce(int i) {
-		if (i == 0 || i == 2) particle.vel.y *= -1f;
-		if (i == 1 || i == 3) particle.vel.x *= -1f;
+		if (i == 0 || i == 2) particle.vel.y *= -e;
+		if (i == 1 || i == 3) particle.vel.x *= -e;
 	}
 
 	void renderForce(PVector f, float sclFac) {
