@@ -101,15 +101,23 @@ public class sketch extends PApplet {
 			sc.render();
 		}
 
-		for (RectCollider sc : staticColliders) {
-			stroke(255);
-			strokeWeight(4);
-			arrow(sc.hitlineStart.x, sc.hitlineStart.y, sc.hitlineEnd.x, sc.hitlineEnd.y, 10);
-		}
+//		for (RectCollider sc : staticColliders) {
+//			stroke(255);
+//			strokeWeight(4);
+//			arrow(sc.hitlineStart.x, sc.hitlineStart.y, sc.hitlineEnd.x, sc.hitlineEnd.y, 10f);
+//		}
 
 		particle.render();
-		stroke(0);
-		renderForce(particle.vel, 1);
+//		stroke(0, 255, 0);
+//		//renderForce(new PVector(particle.r, particle.r), 1f);
+//		stroke(0, 0, 255);
+//		//renderForce(particle.vel, 10f);
+//		{
+//			stroke(255,255,0);
+//			PVector temp = particle.vel.copy();
+//			temp.setMag(particle.r).add(particle.pos);
+//			arrow(temp, PVector.add(temp, particle.vel), 0);
+//		}
 
 		// == Frame Saving ==
 		//saveFrame("/out/frames/take0006/frame-####.png");

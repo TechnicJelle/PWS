@@ -39,7 +39,8 @@ public class Particle {
 	}
 
 	void render() {
-		sketch.fill(rcBall.hit ? rcBall.hitColor : sketch.color(238, 40, 53));
+		//sketch.fill(rcBall.hit ? rcBall.hitColor : sketch.color(238, 40, 53));
+		sketch.fill(238, 40, 53);
 		sketch.noStroke();
 		sketch.circle(pos.x, pos.y, dm);
 	}
