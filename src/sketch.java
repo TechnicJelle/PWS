@@ -98,10 +98,10 @@ public class sketch extends PApplet {
 
 	//public void mousePressed() { saveTable(table, "out/table_highFPS-unlinked.csv"); }
 
-	void renderForce(PVector f, float scl) {
+	void renderForce(PVector f, float sclFac) {
 		stroke(255);
 		strokeWeight(3);
-		line(particle.pos.x, particle.pos.y,particle.pos.x + scl*f.x, particle.pos.y + scl*f.y);
+		arrow(particle.pos.x, particle.pos.y,particle.pos.x + sclFac*f.x, particle.pos.y + sclFac*f.y, 5);
 	}
 
 	void arrow(float x1, float y1, float x2, float y2, float s) {
