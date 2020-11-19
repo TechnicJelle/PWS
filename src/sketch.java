@@ -6,7 +6,8 @@ import processing.core.PVector;
 public class sketch extends PApplet {
 	int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
 	int wallThickness = 10 * scaleFac; // wall should be 10 cm thick
-	boolean applyResistances = false;
+	boolean applyResistances = false ;
+	boolean useOwnMethod = false ;
 
 	float k = 0.044f; // air resistance coefficient
 	Particle particle;
@@ -57,10 +58,24 @@ public class sketch extends PApplet {
 		}
 
 		// Hit checking and wall bounces
-		for (int i = 0; i < staticColliders.length; i++) {
-			if(TestRectOverlap(staticColliders[i], particle.rcBall)) {
-				if (i == 0 || i == 2) particle.vel.y *= -1f;
-				if (i == 1 || i == 3) particle.vel.x *= -1f;
+
+		if(useOwnMethod) {// Own method
+			for (int i = 0; i < staticColliders.length; i++) {
+				RectCollider sc = staticColliders[i];
+				if(particle.rcBall.hit = Intersect2(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel))) {
+					stroke(0);
+					renderForce(particle.vel, 1000);
+					//arrow(particle.pos.x, particle.pos.y,	PVector.add(particle.pos, PVector.mult(particle.vel, 50)).x, PVector.add(particle.pos, PVector.mult(particle.vel, 50)).y, 10);
+					if (i == 0 || i == 2) particle.vel.y *= -1f;
+					if (i == 1 || i == 3) particle.vel.x *= -1f;
+				}
+			}
+		} else {//AABB
+			for (int i = 0; i < staticColliders.length; i++) {
+				if (TestRectOverlap(staticColliders[i], particle.rcBall)) {
+					if (i == 0 || i == 2) particle.vel.y *= -1f;
+					if (i == 1 || i == 3) particle.vel.x *= -1f;
+				}
 			}
 		}
 
