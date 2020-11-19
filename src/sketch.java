@@ -7,7 +7,7 @@ public class sketch extends PApplet {
 	int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
 	int wallThickness = 10 * scaleFac; // wall should be 10 cm thick
 	boolean applyResistances = false ;
-	boolean useOwnMethod = false ;
+	boolean useOwnMethod = true ;
 
 	float k = 0.044f; // air resistance coefficient
 	Particle particle;
