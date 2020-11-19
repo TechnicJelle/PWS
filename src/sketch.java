@@ -103,7 +103,7 @@ public class sketch extends PApplet {
 		renderForce(particle.vel, 1);
 
 		// == Frame Saving ==
-		//saveFrame("/out/frames/take0004/frame-####.png");
+		//saveFrame("/out/frames/take0006/frame-####.png");
 
 		// == Table Logging ==
 		//TableRow newRow = table.addRow();
