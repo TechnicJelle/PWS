@@ -65,7 +65,6 @@ public class sketch extends PApplet {
 				if(particle.rcBall.hit = Intersect2(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel))) {
 					stroke(0);
 					renderForce(particle.vel, 1000);
-					//arrow(particle.pos.x, particle.pos.y,	PVector.add(particle.pos, PVector.mult(particle.vel, 50)).x, PVector.add(particle.pos, PVector.mult(particle.vel, 50)).y, 10);
 					if (i == 0 || i == 2) particle.vel.y *= -1f;
 					if (i == 1 || i == 3) particle.vel.x *= -1f;
 				}
@@ -92,7 +91,6 @@ public class sketch extends PApplet {
 
 			{// Force_resistance_roll
 				PVector Frr = particle.vel.copy().setMag(0.34f);
-				//PVector Frr = PVector.fromAngle(particle.vel.heading()).setMag(c);
 
 				particle.applyForce(Frr.mult(-1f / scaleFac));
 				//renderForce(Frr, 10000f);
