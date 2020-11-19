@@ -149,8 +149,6 @@ public class sketch extends PApplet {
 	}
 
 	void renderForce(PVector f, float sclFac) {
-		//stroke(255);
-		strokeWeight(3);
 		arrow(particle.pos, PVector.add(particle.pos, PVector.mult(f, sclFac)), 5);
 	}
 
