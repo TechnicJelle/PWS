@@ -99,6 +99,8 @@ public class sketch extends PApplet {
 		}
 
 		particle.render();
+		stroke(0);
+		renderForce(particle.vel, 1);
 
 		// == Frame Saving ==
 		//saveFrame("/out/frames/take0004/frame-####.png");
