@@ -16,10 +16,10 @@ public class Particle {
 	Particle(PApplet sketch, float x, float y, float d) {
 		this.sketch = sketch;
 		pos = new PVector(x, y);
-		vel = new PVector(0, 0);
-		acc = new PVector(0, 0);
+		vel = new PVector(0f, 0f);
+		acc = new PVector(0f, 0f);
 		dm = d;
-		r = dm/2;
+		r = dm/2f;
 		rcBall = new RectCollider(sketch, x-r, y-r, x+r,y+r);
 	}
 
@@ -30,11 +30,11 @@ public class Particle {
 	void update() {
 		vel.add(acc);
 		if (vel.mag() < 0.01f) {
-			vel.x = 0;
-			vel.y = 0;
+			vel.x = 0f;
+			vel.y = 0f;
 		}
 		pos.add(vel);
-		acc.mult(0);
+		acc.mult(0f);
 		rcBall.move(vel);
 	}
 
