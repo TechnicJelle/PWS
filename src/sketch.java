@@ -150,6 +150,7 @@ public class sketch extends PApplet {
 		return true;
 	}
 	boolean Intersect2(PVector line_r1s, PVector line_r1e, PVector line_r2s, PVector line_r2e){
+		//From https://youtu.be/7Ik2vowGcU0?t=1727
 		float h = (line_r2e.x - line_r2s.x) * (line_r1s.y - line_r1e.y) - (line_r1s.x - line_r1e.x) * (line_r2e.y - line_r2s.y);
 		float t1 = ((line_r2s.y - line_r2e.y) * (line_r1s.x - line_r2s.x) + (line_r2e.x - line_r2s.x) * (line_r1s.y - line_r2s.y)) / h;
 		float t2 = ((line_r1s.y - line_r1e.y) * (line_r1s.x - line_r2s.x) + (line_r1e.x - line_r1s.x) * (line_r1s.y - line_r2s.y)) / h;
