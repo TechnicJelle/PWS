@@ -26,9 +26,16 @@ public class sketch extends PApplet {
 		particle.applyForce(new PVector(2,1)); // Keep this small! This is kind of the time step (dt). If you want the simulation to run faster, change the frameRate up there
 
 		staticColliders[0] = new RectCollider(this, 0, 0, width, wallThickness);
+		staticColliders[0].setHitLines(0, wallThickness, width, wallThickness);
+
 		staticColliders[1] = new RectCollider(this, width-wallThickness, 0, width, height);
+		staticColliders[1].setHitLines(width-wallThickness, 0, width-wallThickness, height);
+
 		staticColliders[2] = new RectCollider(this, 0, height-wallThickness, width, height);
+		staticColliders[2].setHitLines(width, height-wallThickness, 0, height-wallThickness);
+
 		staticColliders[3] = new RectCollider(this, 0, 0, wallThickness, height);
+		staticColliders[3].setHitLines(wallThickness, height, wallThickness, 0);
 
 		// == Table Logging Setup ==
 		//table = new Table();
@@ -84,6 +91,13 @@ public class sketch extends PApplet {
 		for (RectCollider sc : staticColliders) {
 			sc.render();
 		}
+
+		for (RectCollider sc : staticColliders) {
+			stroke(255);
+			strokeWeight(4);
+			arrow(sc.hitlineStart.x, sc.hitlineStart.y, sc.hitlineEnd.x, sc.hitlineEnd.y, 10);
+		}
+
 		particle.render();
 
 		// == Frame Saving ==

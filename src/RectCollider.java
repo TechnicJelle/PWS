@@ -9,6 +9,9 @@ public class RectCollider {
 	PVector pos1;
 	PVector pos2;
 
+	PVector hitlineStart;
+	PVector hitlineEnd;
+
 	boolean hit = false;
 	int hitColor;
 	int noHitColor;
@@ -19,6 +22,11 @@ public class RectCollider {
 		pos2 = new PVector(x2, y2);
 		hitColor = sketch.color(255);
 		noHitColor = sketch.color(139, 85, 36);
+	}
+
+	void setHitLines(float ax, float ay, float bx, float by) {
+		hitlineStart = new PVector(ax, ay);
+		hitlineEnd = new PVector(bx, by);
 	}
 
 	void move(PVector shove) {
