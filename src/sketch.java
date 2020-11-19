@@ -63,17 +63,13 @@ public class sketch extends PApplet {
 			for (int i = 0; i < staticColliders.length; i++) {
 				RectCollider sc = staticColliders[i];
 				if(particle.rcBall.hit = Intersect2(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel))) {
-					stroke(0);
-					renderForce(particle.vel, 1000);
-					if (i == 0 || i == 2) particle.vel.y *= -1f;
-					if (i == 1 || i == 3) particle.vel.x *= -1f;
+					executeParticleBounce(i);
 				}
 			}
 		} else {//AABB
 			for (int i = 0; i < staticColliders.length; i++) {
 				if (TestRectOverlap(staticColliders[i], particle.rcBall)) {
-					if (i == 0 || i == 2) particle.vel.y *= -1f;
-					if (i == 1 || i == 3) particle.vel.x *= -1f;
+					executeParticleBounce(i);
 				}
 			}
 		}
@@ -126,6 +122,11 @@ public class sketch extends PApplet {
 	}
 
 	//public void mousePressed() { saveTable(table, "out/table_highFPS-unlinked.csv"); }
+
+	private void executeParticleBounce(int i) {
+		if (i == 0 || i == 2) particle.vel.y *= -1f;
+		if (i == 1 || i == 3) particle.vel.x *= -1f;
+	}
 
 	void renderForce(PVector f, float sclFac) {
 		stroke(255);
