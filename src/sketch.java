@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PVector;
-import processing.data.Table;
-import processing.data.TableRow;
+//import processing.data.Table;
+//import processing.data.TableRow;
 
 public class sketch extends PApplet {
 	int scaleFac = 6; // real world scale to pixel scale --> 6 pixels : 1 cm
@@ -18,7 +18,7 @@ public class sketch extends PApplet {
 
 	RectCollider[] staticColliders = new RectCollider[4];
 
-	Table table;
+//	Table table;
 
 	public void settings() {
 		size(254*scaleFac + 2*wallThickness, 138*scaleFac + 2*wallThickness);
@@ -44,11 +44,11 @@ public class sketch extends PApplet {
 		staticColliders[3].setHitLines(wallThickness+r, height, wallThickness+r, 0);
 
 		// == Table Logging Setup ==
-		table = new Table();
-		table.addColumn("millis");
-		table.addColumn("frameCount");
+//		table = new Table();
+//		table.addColumn("millis");
+//		table.addColumn("frameCount");
 //		table.addColumn("velMag");
-		table.addColumn("fps");
+//		table.addColumn("fps");
 	}
 
 	public void draw() {
@@ -129,16 +129,16 @@ public class sketch extends PApplet {
 		//saveFrame("/out/frames/take0006/frame-####.png");
 
 		// == Table Logging ==
-		TableRow newRow = table.addRow();
-		newRow.setInt("millis", millis());
-		newRow.setInt("frameCount", frameCount);
+//		TableRow newRow = table.addRow();
+//		newRow.setInt("millis", millis());
+//		newRow.setInt("frameCount", frameCount);
 //		newRow.setFloat("velMag", particle.vel.mag());
-		newRow.setFloat("fps", frameRate);
-
-		if(frameCount >= 5000) {
-			saveTable(table, "out/table_aabb.csv");
-			exit();
-		}
+//		newRow.setFloat("fps", frameRate);
+//
+//		if(frameCount >= 5000) {
+//			saveTable(table, "out/table_aabb.csv");
+//			exit();
+//		}
 	}
 
 	//public void mousePressed() { saveTable(table, "out/table_aabb.csv"); }
