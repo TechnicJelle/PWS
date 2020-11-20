@@ -71,6 +71,7 @@ public class sketch extends PApplet {
 				PVector hitPoint = Intersect3(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel));
 				if (hitPoint != null) {
 					executeParticleBounce(i);
+					//particle.pos = hitPoint;
 				}
 			}
 		} else {//AABB
@@ -203,15 +204,12 @@ public class sketch extends PApplet {
 	}
 
 	PVector Intersect3(PVector line_r1s, PVector line_r1e, PVector line_r2s, PVector line_r2e) {
-		//From https://stackoverflow.com/a/1968345/8109619
-		float p0_x = line_r1s.x;
-		float p0_y = line_r1s.y;
-		float p1_x = line_r1e.x;
-		float p1_y = line_r1e.y;
-		float p2_x = line_r2s.x;
-		float p2_y = line_r2s.y;
-		float p3_x = line_r2e.x;
-		float p3_y = line_r2e.y;
+		//Adapted from https://stackoverflow.com/a/1968345/8109619
+		float p0_x = line_r1s.x; float p0_y = line_r1s.y;
+		float p1_x = line_r1e.x; float p1_y = line_r1e.y;
+
+		float p2_x = line_r2s.x; float p2_y = line_r2s.y;
+		float p3_x = line_r2e.x; float p3_y = line_r2e.y;
 
 		float s1_x, s1_y, s2_x, s2_y;
 		s1_x = p1_x - p0_x;     s1_y = p1_y - p0_y;
