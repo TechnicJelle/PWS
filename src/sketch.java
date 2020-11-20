@@ -144,8 +144,11 @@ public class sketch extends PApplet {
 	//public void mousePressed() { saveTable(table, "out/table_aabb.csv"); }
 
 	private void executeParticleBounce(int i) {
-		if (i == 0 || i == 2) particle.vel.y *= -e;
-		if (i == 1 || i == 3) particle.vel.x *= -e;
+		// i is the index of the wall array.
+		// It lets the code know which wall has just gotten hit
+
+		if (i == 0 || i == 2) particle.vel.y *= -e; //top/bottom wall
+		if (i == 1 || i == 3) particle.vel.x *= -e; //left/right wall
 	}
 
 	void renderForce(PVector f, float sclFac) {
