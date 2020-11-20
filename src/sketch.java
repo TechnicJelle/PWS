@@ -68,7 +68,8 @@ public class sketch extends PApplet {
 		if(useOwnMethod) {// Own method
 			for (int i = 0; i < staticColliders.length; i++) {
 				RectCollider sc = staticColliders[i];
-				if(particle.rcBall.hit = Intersect2(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel))) {
+				PVector hitPoint = Intersect3(sc.hitlineStart, sc.hitlineEnd, particle.pos, PVector.add(particle.pos, particle.vel));
+				if (hitPoint != null) {
 					executeParticleBounce(i);
 				}
 			}
@@ -199,6 +200,41 @@ public class sketch extends PApplet {
 				 + (line_r1e.x - line_r1s.x) * (line_r1s.y - line_r2s.y)) / h;
 
 		return t1 >= 0.0f && t1 < 1.0f && t2 >= 0.0f && t2 < 1.0f;
+	}
+
+	PVector Intersect3(PVector line_r1s, PVector line_r1e, PVector line_r2s, PVector line_r2e) {
+		//From https://stackoverflow.com/a/1968345/8109619
+		float p0_x = line_r1s.x;
+		float p0_y = line_r1s.y;
+		float p1_x = line_r1e.x;
+		float p1_y = line_r1e.y;
+		float p2_x = line_r2s.x;
+		float p2_y = line_r2s.y;
+		float p3_x = line_r2e.x;
+		float p3_y = line_r2e.y;
+
+		float s1_x, s1_y, s2_x, s2_y;
+		s1_x = p1_x - p0_x;     s1_y = p1_y - p0_y;
+		s2_x = p3_x - p2_x;     s2_y = p3_y - p2_y;
+
+		float s, t;
+		float h = -s2_x * s1_y + s1_x * s2_y;
+		s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / h;
+		t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / h;
+
+		if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+		{
+			// Collision detected
+            float i_x = p0_x + (t * s1_x);
+            float i_y = p0_y + (t * s1_y);
+			return new PVector(i_x, i_y);
+		}
+
+		return null; // No collision
+	}
+
+	void point(PVector p) {
+		point(p.x, p.y);
 	}
 
 	public static void main(String[] args) {
