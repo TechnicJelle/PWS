@@ -1,3 +1,5 @@
+\
+![Lines of Code](https://raw.githubusercontent.com/TechnicJelle/PWS/badges/badgelines.svg)
 # PWS
 A repo for our [PWS](https://bit.ly/3oYO69p)\
 Made by me and https://github.com/Patrycioss
